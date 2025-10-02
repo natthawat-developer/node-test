@@ -39,8 +39,10 @@ app.post("/webhook", async (req, res) => {
       const userMessage = event.message.text;
       console.log("User:", userMessage);
 
-      // ตอบกลับ
-      await replyMessage(event.replyToken, `คุณพิมพ์ว่า: ${userMessage}`);
+      // ตอบกลับพร้อมแสดง User ID
+      const userId = event.source.userId;
+      await replyMessage(event.replyToken, `User ID: ${userId}
+ข้อความที่คุณพิมพ์: ${userMessage}`);
     }
   }
 
