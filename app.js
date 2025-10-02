@@ -37,10 +37,10 @@ app.post("/webhook", async (req, res) => {
   for (const event of events) {
     if (event.type === "message" && event.message.type === "text") {
       const userMessage = event.message.text;
-      console.log("User:", userMessage);
+      const userId = event.source.userId;
+      console.log(`User ID: ${userId}, Message: ${userMessage}`);
 
       // ตอบกลับพร้อมแสดง User ID
-      const userId = event.source.userId;
       await replyMessage(event.replyToken, `User ID: ${userId}
 ข้อความที่คุณพิมพ์: ${userMessage}`);
     }
